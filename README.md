@@ -14,9 +14,8 @@
 ## Technologies Used
 
 - HTML5
-- CSS3 / SCSS
-- JavaScript (Vanilla / Framework if applicable)
-- (Add any frameworks or libraries you used, e.g., React, Vue, TailwindCSS)
+- CSS
+- JavaScript 
 
 ## Installation
 
