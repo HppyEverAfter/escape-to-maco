@@ -22,6 +22,7 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
         </ul>
         <div class="mobile-menu">
             <i class="fas fa-bars"></i>
@@ -204,5 +205,37 @@
         </div>
     </footer>
     <script src="../scripts/menu-bar.js"></script>
-</body>
-</html>
+    <script>
+        // Prevent back button navigation when inside the home page
+        function trapBackButton() {
+            // Push a state to history so users cannot navigate back to the landing page
+            if (window.location.pathname.endsWith("home.html"))  {
+                history.pushState(null, null, window.location.href);
+                window.addEventListener('popstate', function(event) {
+                    // Push another state to keep the user stuck on the home page
+                    history.pushState(null, null, window.location.href);
+                });
+            }
+        }
+    
+        // Run the trapBackButton function when the page loads
+        window.onload = function() {
+            trapBackButton();
+        };
+    
+        // Logout function to clear session and redirect to login page
+        function logout() {
+            sessionStorage.removeItem('loggedIn');
+            location.replace("../loginpage.html");
+        }
+    </script>
+    
+    
+    
+
+    
+
+    
+    </body>
+    </html>
+    
