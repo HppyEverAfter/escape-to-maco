@@ -1,5 +1,3 @@
----
-
 # Escape to Maco
 
 **Escape to Maco** is a beautifully crafted website designed to showcase the hidden beauty, culture, and spirit of Maco. Through a seamless and engaging experience, users can explore stunning landscapes, vibrant traditions, and unique adventures that Maco has to offer. Whether you're a traveler, an adventurer, or simply a dreamer, Escape to Maco invites you to embark on a journey like no other.
@@ -44,6 +42,4 @@ Contributions are welcome! Feel free to fork the repository and submit pull requ
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE).
-
----
+This project is open-source and available under the [MIT License](LICENSE).s
