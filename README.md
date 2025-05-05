@@ -5,7 +5,7 @@
 ## Features
 
 - 🌎 Responsive and mobile-friendly design
-- 🎥 Immersive multimedia content (images, videos, and more)
+- 🎥 Immersive multimedia content (images, , and more)
 - 🧭 Easy and intuitive navigation
 - 🏞️ Highlighting local attractions, culture, and adventures
 - ⚡ Optimized for fast loading and performance

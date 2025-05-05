@@ -39,14 +39,34 @@
         </div>
     </div>
 
+    
     <script>
         function setSession(event) {
             event.preventDefault();
-            sessionStorage.setItem('loggedIn', 'true');
-            location.replace("pages/home.html"); // Use location.replace, NOT href
+        
+            const enteredUsername = document.getElementById('username').value.trim();
+            const enteredPassword = document.getElementById('password').value;
+        
+            const storedUsername = localStorage.getItem('signupUsername');
+            const storedPassword = localStorage.getItem('signupPassword');
+        
+            if (enteredUsername === storedUsername && enteredPassword === storedPassword) {
+                sessionStorage.setItem('loggedIn', 'true');
+                location.replace("pages/home.html");
+            } else {
+                alert("Credentials not recognized. Please sign up or check your login details.");
+            }
+        
             return false;
         }
-    </script>
+        
+        window.onload = function () {
+            if (sessionStorage.getItem('loggedIn') === 'true') {
+                location.replace("pages/home.html");
+            }
+        };
+        </script>
+        
     
     
 </body>

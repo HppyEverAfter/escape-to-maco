@@ -22,7 +22,7 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="about.html" class="active">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="../index.html">Logout</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
         </ul>
         <div class="mobile-menu">
             <i class="fas fa-bars"></i>
@@ -42,7 +42,7 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
-                    <img src="../images/download (23).jpg" alt="About Escape to Maco">
+                    <img src="../images/mainit fallsn.jpg" alt="About Escape to Maco">
                 </div>
                 <div class="about-text">
                     <h2>Our Story</h2>
@@ -88,7 +88,7 @@
                     <img src="../images/my pic.jpg" alt="Lupoyon Delayht L.">
                 </div>
                 <div class="creator-bio">
-                    <h3>Lupoyon Delayht L.</h3>
+                    <h3>Lupoyon Deliht L.</h3>
                     <p class="creator-title">Founder & Web Developer</p>
                     <p>As a proud local of Maco, I've always been passionate about showcasing the beauty of my hometown. With a background in web development and a deep love for travel, I created Escape to Maco to help visitors discover the best our town has to offer.</p>
                     <p>This website was developed as part of my final project for WST101 - Web Systems and Technologies course under the guidance of Professor John Louis Mercaral, MIS.</p>
@@ -135,7 +135,7 @@
                         <li>Final project for WST101 course</li>
                         <li>Demonstrates web development skills</li>
                         <li>Combines practical web development with tourism promotion</li>
-                        <li>Completed in April 2025</li>
+                        <li>Completed in May 2025</li>
                     </ul>
                 </div>
             </div>
@@ -148,9 +148,9 @@
                 <h3 class="footer-title">Escape to Maco</h3>
                 <p>Your ultimate guide to exploring Maco's hidden gems and popular destinations.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/lgumaco1967"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/kerei_dereya/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/Delayht87"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
             <div class="footer-section">
@@ -178,6 +178,110 @@
             </div>
         </div>
     </footer>
+
+     
+     <div id="logout-confirmation" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-buttons">
+                <button onclick="confirmLogout()" class="btn primary">Yes</button>
+                <button onclick="cancelLogout()" class="btn secondary">No</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .modal-buttons .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-buttons .btn.primary {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .modal-buttons .btn.secondary {
+            background-color: #ccc;
+            color: #333;
+        }
+    </style>
+
+<script>
+    function logout() {
+        document.getElementById("logout-confirmation").style.display = "block";
+    }
+
+    function confirmLogout() {
+        sessionStorage.removeItem('loggedIn');
+        sessionStorage.setItem('loggedOut', 'true'); 
+        location.replace("../index.html"); 
+    }
+
+    function cancelLogout() {
+        document.getElementById("logout-confirmation").style.display = "none";
+    }
+
+    function trapBackButton() {
+    
+        const isLoggedIn = sessionStorage.getItem('loggedIn') === 'true';
+        const isLoggedOut = sessionStorage.getItem('loggedOut') === 'true';
+
+        if (!isLoggedIn && isLoggedOut && window.location.pathname.endsWith("home.html")) {
+            history.pushState(null, null, window.location.href);
+            window.addEventListener('popstate', function () {
+             
+                history.pushState(null, null, window.location.href);
+                alert("You are logged out. Please log in again.");
+            });
+        }
+    }
+
+    window.onload = function () {
+        trapBackButton();
+
+        //********redirect user back to login if they are logged out***********//
+        const isLoggedIn = sessionStorage.getItem('loggedIn') === 'true';
+        const isLoggedOut = sessionStorage.getItem('loggedOut') === 'true';
+
+        if (!isLoggedIn && isLoggedOut && window.location.pathname.endsWith("home.html")) {
+            location.replace("../index.html"); 
+        }
+    };
+</script>
+
+
     <script src="../scripts/menu-bar.js"></script>
 </body>
 </html>

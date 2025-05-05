@@ -1,65 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Image with Color Overlay</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camping Poster</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0f0;
+    height: 100vh;
+  }
+
+  .poster {
+    background-color: #4CAF50; 
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .poster h1 {
+    font-size: 2em;
+    color: #ffffff; 
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+
+  .poster h2 {
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 40px;
+  }
+
+  .images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .image-box {
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+  }
+
+  .image-box img {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .image-box:hover img {
+    transform: scale(1.1);
+  }
+
+  .camping {
+    font-size: 3em;
+    color: #ffcc00;
+    text-align: center;
+  
+    margin: 20px 0;
+  }
+
+  .info {
+    color: #ffffff; 
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .info a {
+    color: #ffcc00;
+    text-decoration: none;
+  }
+
+  .info a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .poster h1 {
+      font-size: 3em;
     }
 
-    .container {
-      position: relative;
+    .poster h2 {
+      font-size: 1.2em;
+    }
+
+    .image-box {
       width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
     }
 
-    .container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; 
-      position: absolute;
-      top: 0;
-      left: 0;
+    .image-box img {
+      height: 200px; 
     }
 
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      pointer-events: none;
+    .camping {
+      font-size: 1em;
     }
-
-    h1 {
-      color: white;
-      text-align: center;
-      font-size: 1.5rem; 
-      line-height: 1.6;
-      max-width: 80%;
-      margin: 0 auto;
-      padding: 2rem;
-      z-index: 1;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <img src="/images/Lake Mainit.jpg" alt="New Barili Mountain View Resort"> 
-    <div class="overlay"></div>
-    <h1>The ideal time to visit Maco is during the dry season, from December to May, when the weather is more favorable for outdoor activities and travel.
 
-        Whether you're seeking adventure, relaxation, or a mix of both, Maco offers a diverse range of attractions that cater to all types of travelers.</h1>
+<div class="poster">
+   <h1> Your Next Adventure Awaits</h1>
+  <div class="images">
+    <div class="image-box">
+      <img src="/images/bambos compostela.jpg" alt="Image 1">
+    </div>
+    <div class="image-box">
+      <img src="/images/bamboos maco.jpg" alt="Image 2">
+    </div>
+    <div class="image-box">
+      <img src="/images/Arashiyama Bamboo Grove.jpg" alt="Image 3">
+    </div>
+    <div class="image-box">
+      <img src="/images/bamboos.jpg" alt="Image 4">
+    </div>
   </div>
+  <div class="camping"></div>
+  <div class="info">
+    <p>Step into a world unlike any other, where towering bamboo forests set the stage for heart-pounding adventures and peaceful escapes. Whether you're gliding through green canopies on a zipline, navigating eco-trails, or simply soaking in the serene beauty of nature, Bamboo Adventure Park is your gateway to discovery, excitement, and harmony.; </a>.</p>
+    
+    <p>info@escapetomaco.com</p>
+  </div>
+</div>
+
 </body>
 </html>

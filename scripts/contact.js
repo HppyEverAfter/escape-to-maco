@@ -1,24 +1,24 @@
 // Initialize Leaflet Map
 function initMap() {
-    // Coordinates for Maco, Davao de Oro, Philippines
+    // **************Coordinates for Maco, Davao de Oro, Philippines**********
     const macoLocation = { lat: 7.3619, lng: 126.1047 };
 
-    // Create map centered on Maco
+    //******Create map centered on Maco********//
     const map = L.map('map').setView(macoLocation, 13);
 
-    // Add OpenStreetMap tiles
+    // *******Add OpenStreetMap tiles******//
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Add marker for Maco
+    //*******Add marker for Maco**********//
     const marker = L.marker(macoLocation).addTo(map)
         .bindPopup('Escape to Maco Office<br>Contact: +63 912 345 6789')
         .openPopup();
 }
 
 $(document).ready(function() {
-    // Initialize the map
+    //****** Initialize the map******//
     initMap();
 
     // Mobile menu toggle
@@ -27,7 +27,7 @@ $(document).ready(function() {
         $(this).find('i').toggleClass('fa-bars fa-times');
     });
 
-    // Character counter for message textarea
+    // *******Character counter for message textarea**********//
     const messageField = $('#message');
     const currentCount = $('#current-count');
     const maxCount = $('#max-count');
@@ -40,7 +40,7 @@ $(document).ready(function() {
         const currentLength = $(this).val().length;
         currentCount.text(currentLength);
 
-        // Change color when approaching limit
+        //********Change color when approaching limit******//
         if (currentLength > maxLength * 0.9) {
             currentCount.css('color', '#dc3545');
         } else if (currentLength > maxLength * 0.7) {
@@ -50,17 +50,17 @@ $(document).ready(function() {
         }
     });
 
-    // Form validation
+    //*******  Form validation*******//
     $('#contact-form').submit(function(e) {
         e.preventDefault();
 
         let isValid = true;
 
-        // Reset errors
+      
         $('.error-message').hide();
         $('.input-with-icon input, .input-with-icon textarea').removeClass('shake');
 
-        // Validate name
+        //******  Validate name******//
         const name = $('#name').val().trim();
         if (name === '') {
             $('#name-error').text('Please enter your name').show();
@@ -93,7 +93,7 @@ $(document).ready(function() {
             isValid = false;
         }
 
-        // Validate message
+        // *******Validate message********//
         const message = $('#message').val().trim();
         if (message === '') {
             $('#message-error').text('Please enter your message').show();
@@ -105,9 +105,9 @@ $(document).ready(function() {
             isValid = false;
         }
 
-        // If form is valid, submit
+        // ********If form is valid, submit*******//
         if (isValid) {
-            // Configure toastr notifications
+            //******* Configure toastr notifications*******//
             toastr.options = {
                 closeButton: true,
                 progressBar: true,
@@ -115,37 +115,37 @@ $(document).ready(function() {
                 timeOut: 5000
             };
 
-            // Simulate form submission
+            // *******Simulate form submission*******//
             const btn = $(this).find('button[type="submit"]');
             const originalText = btn.html();
 
             btn.html('<i class="fas fa-spinner fa-spin"></i> Sending...');
             btn.prop('disabled', true);
 
-            // Simulate AJAX request with timeout
+          
             setTimeout(function() {
-                // Reset form
+                //*****  Reset form*****//
                 $('#contact-form')[0].reset();
                 currentCount.text('0');
 
-                // Show success message
+                //****** Show success message******//
                 toastr.success('Your message has been sent successfully. We will get back to you soon!', 'Thank You!');
 
-                // Reset button
+                //*******Reset button******//
                 btn.html(originalText);
                 btn.prop('disabled', false);
             }, 2000);
         }
     });
 
-    // Input focus effects
+    //*****Input focus effects*******//
     $('.input-with-icon input, .input-with-icon textarea').focus(function() {
         $(this).parent().find('i').addClass('active');
     }).blur(function() {
         $(this).parent().find('i').removeClass('active');
     });
 
-    // FAQ accordion
+    //******FAQ accordion****//
     $('.faq-question').click(function() {
         const parent = $(this).parent();
 
@@ -157,7 +157,7 @@ $(document).ready(function() {
         }
     });
 
-    // Image rotation for contact images
+    //****  Image rotation for contact images******//
     const images = [
         '../images/maco-scenery.jpg',
         '../images/maco-waterfall.jpg',
@@ -166,7 +166,7 @@ $(document).ready(function() {
 
     let currentImage = 0;
 
-    // Change image every 5 seconds
+    //******  Change image every 5 seconds*******//
     setInterval(function() {
         currentImage = (currentImage + 1) % images.length;
         $('#contact-image').fadeOut(500, function() {
@@ -175,7 +175,7 @@ $(document).ready(function() {
         });
     }, 5000);
 
-    // Animation on scroll
+    //**********Animation on scroll*******//
     $(window).scroll(function() {
         const windowHeight = $(window).height();
         const scrollTop = $(window).scrollTop();
@@ -189,6 +189,6 @@ $(document).ready(function() {
         });
     });
 
-    // Initialize tooltips
+    //*****Initialize tooltips*****//
     $('[data-toggle="tooltip"]').tooltip();
 });

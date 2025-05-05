@@ -22,13 +22,14 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="#" onclick="logout()">Logout</a></li>
+               <li><a href="#" onclick="logout()">Logout</a></li>
+           
+        
         </ul>
         <div class="mobile-menu">
             <i class="fas fa-bars"></i>
         </div>
     </nav>
-
 
     <header class="hero">
         <div class="hero-content">
@@ -37,7 +38,6 @@
             <a href="spots.html" class="btn primary">Explore Top Spots</a>
         </div>
     </header>
-
 
     <section class="section">
         <div class="container">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="card spot-card">
-                    <img src="../images/spot3.jpg" alt="Spot 3" class="card-image">
+                    <img src="/images/download (28).jpg" alt="Spot 3" class="card-image">
                     <div class="card-content">
                         <h3 class="card-title">Adventure Park</h3>
                         <p class="card-text">Thrill-seeking adventures and activities for all ages.</p>
@@ -88,7 +88,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="section why-choose-us">
         <div class="container">
@@ -134,7 +133,7 @@
                         <p>"Thanks to Escape to Maco, we discovered amazing spots we would have never found on our own. The travel time estimates were spot on!"</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="../images/girl.jpg"Testimonial 1" class="testimonial-image">
+                        <img src="../images/girl.jpg" alt="Testimonial 1" class="testimonial-image">
                         <div class="author-info">
                             <h4>Maria Santos</h4>
                             <p>Weekend Explorer</p>
@@ -166,7 +165,6 @@
             </div>
         </div>
     </section>
-
 
     <footer class="footer">
         <div class="container footer-container">
@@ -204,38 +202,110 @@
             </div>
         </div>
     </footer>
+
+    <div id="logout-confirmation" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-buttons">
+                <button onclick="confirmLogout()" class="btn primary">Yes</button>
+                <button onclick="cancelLogout()" class="btn secondary">No</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .modal-buttons .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-buttons .btn.primary {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .modal-buttons .btn.secondary {
+            background-color: #ccc;
+            color: #333;
+        }
+    </style>
+
     <script src="../scripts/menu-bar.js"></script>
     <script>
-        // Prevent back button navigation when inside the home page
+        function logout() {
+            document.getElementById("logout-confirmation").style.display = "block";
+        }
+    
+        function confirmLogout() {
+            sessionStorage.removeItem('loggedIn');
+            sessionStorage.setItem('loggedOut', 'true'); 
+            location.replace("../index.html"); 
+        }
+    
+        function cancelLogout() {
+            document.getElementById("logout-confirmation").style.display = "none";
+        }
+    
         function trapBackButton() {
-            // Push a state to history so users cannot navigate back to the landing page
-            if (window.location.pathname.endsWith("home.html"))  {
+            //******* Only apply trap if on home page AND user is logged out******//
+            const isLoggedIn = sessionStorage.getItem('loggedIn') === 'true';
+            const isLoggedOut = sessionStorage.getItem('loggedOut') === 'true';
+    
+            if (!isLoggedIn && isLoggedOut && window.location.pathname.endsWith("home.html")) {
                 history.pushState(null, null, window.location.href);
-                window.addEventListener('popstate', function(event) {
-                    // Push another state to keep the user stuck on the home page
+                window.addEventListener('popstate', function () {
+                    
                     history.pushState(null, null, window.location.href);
+                    alert("You are logged out. Please log in again.");
                 });
             }
         }
     
-        // Run the trapBackButton function when the page loads
-        window.onload = function() {
+        window.onload = function () {
             trapBackButton();
-        };
     
-        // Logout function to clear session and redirect to login page
-        function logout() {
-            sessionStorage.removeItem('loggedIn');
-            location.replace("../loginpage.html");
-        }
+            //*********** Redirect user back to login if they are logged out*****//
+            const isLoggedIn = sessionStorage.getItem('loggedIn') === 'true';
+            const isLoggedOut = sessionStorage.getItem('loggedOut') === 'true';
+    
+            if (!isLoggedIn && isLoggedOut && window.location.pathname.endsWith("home.html")) {
+                location.replace("../index.html"); 
+            }
+        };
     </script>
     
-    
-    
+ 
 
-    
-
-    
-    </body>
-    </html>
-    
+</body>
+</html>

@@ -22,7 +22,7 @@
             <li><a href="gallery.html" class="active">Gallery</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="../index.html">Logout</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
         </ul>
         <div class="mobile-menu">
             <i class="fas fa-bars"></i>
@@ -91,6 +91,109 @@
             </div>
         </div>
     </footer>
+
+   
+     <div id="logout-confirmation" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-buttons">
+                <button onclick="confirmLogout()" class="btn primary">Yes</button>
+                <button onclick="cancelLogout()" class="btn secondary">No</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .modal-buttons .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-buttons .btn.primary {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .modal-buttons .btn.secondary {
+            background-color: #ccc;
+            color: #333;
+        }
+    </style>
+   <script>
+    function logout() {
+        document.getElementById("logout-confirmation").style.display = "block";
+    }
+
+    function confirmLogout() {
+        sessionStorage.removeItem('loggedIn');
+        sessionStorage.setItem('loggedOut', 'true'); 
+        location.replace("../index.html"); 
+    }
+
+    function cancelLogout() {
+        document.getElementById("logout-confirmation").style.display = "none";
+    }
+
+    function trapBackButton() {
+       
+        const isLoggedIn = sessionStorage.getItem('loggedIn') === 'true';
+        const isLoggedOut = sessionStorage.getItem('loggedOut') === 'true';
+
+        if (!isLoggedIn && isLoggedOut && window.location.pathname.endsWith("home.html")) {
+            history.pushState(null, null, window.location.href);
+            window.addEventListener('popstate', function () {
+           
+                history.pushState(null, null, window.location.href);
+                alert("You are logged out. Please log in again.");
+            });
+        }
+    }
+
+    window.onload = function () {
+        trapBackButton();
+
+        //**************** Redirect user back to login if they are logged out********//
+        const isLoggedIn = sessionStorage.getItem('loggedIn') === 'true';
+        const isLoggedOut = sessionStorage.getItem('loggedOut') === 'true';
+
+        if (!isLoggedIn && isLoggedOut && window.location.pathname.endsWith("home.html")) {
+            location.replace("../index.html"); 
+        }
+    };
+</script>
+
+
     <script src="../scripts/gallery.js"></script>
     <script src="../scripts/menu-bar.js"></script>
 </body>

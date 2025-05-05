@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>camping</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0f0;
+    height: 100vh;
+  }
+
+  .poster {
+    background-color: #4CAF50; 
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .poster h1 {
+    font-size: 2em;
+    color: #ffffff; 
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+
+  .poster h2 {
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 40px;
+  }
+
+  .images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .image-box {
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+  }
+
+  .image-box img {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .image-box:hover img {
+    transform: scale(1.1);
+  }
+
+  .camping {
+    font-size: 3em;
+    color: #ffcc00;
+    text-align: center;
+  
+    margin: 20px 0;
+  }
+
+  .info {
+    color: #ffffff; 
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .info a {
+    color: #ffcc00;
+    text-decoration: none;
+  }
+
+  .info a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .poster h1 {
+      font-size: 3em;
+    }
+
+    .poster h2 {
+      font-size: 1.2em;
+    }
+
+    .image-box {
+      width: 100%;
+    }
+
+    .image-box img {
+      height: 200px; 
+    }
+
+    .camping {
+      font-size: 1em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+   <h1> Welcome to Stock  Where Every Bite Feels Like Home</h1>
+  <div class="images">
+    <div class="image-box">
+      <img src="/images/Donna Jos Sia.jpg" alt="Image 1">
+    </div>
+    <div class="image-box">
+      <img src="/images/nook.jpg" alt="Image 2">
+    </div>
+    <div class="image-box">
+      <img src="/images/borsa.jpg" alt="Image 3">
+    </div>
+    <div class="image-box">
+      <img src="/images/shesh.jpg" alt="Image 4">
+    </div>
+  </div>
+  <div class="camping"></div>
+  <div class="info">
+    <p>Welcome to Stock Cafeteria where every meal is made with heart, every bite feels like home, and every visit is a moment to savor.
+    </a>.</p>
+    
+    <p>info@escapetomaco.com</p>
+  </div>
+</div>
+
+</body>
+</html> 

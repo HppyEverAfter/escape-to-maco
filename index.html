@@ -19,7 +19,7 @@
 
         .top-buttons a {
             padding: 10px 20px;
-            background-color: #4CAF50; /* Green color or change as you like */
+            background-color: #1eeb25; 
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -49,13 +49,13 @@
 </head>
 <body class="landing-page">
 
-    <!-- Top Right Buttons -->
+    <!--********* Top Right Buttons************* -->
     <div class="top-buttons">
         <a href="loginpage.html">Login</a>
         <a href="signup.html">Sign Up</a>
     </div>
 
-    <!-- Landing Section -->
+    <!--******** Landing Section******** -->
     <div class="landing-container">
         <div class="landing-left">
             <div class="logo-container">
@@ -72,21 +72,43 @@
         </div>
     </div>
     <script>
-        // Prevent back button and trap the user in the landing page
         function trapBackButton() {
-            // Push a state to history so users cannot navigate away from the landing page
             history.pushState(null, null, window.location.href);
             window.addEventListener('popstate', function(event) {
-                // Push another state to keep the user stuck
-                history.pushState(null, null, window.location.href);
+                const isLoggedOut = sessionStorage.getItem('loggedOut') === 'true';
+    
+                //*********If user is logged out, stay on this page********//
+                if (isLoggedOut) {
+                    history.pushState(null, null, window.location.href);
+                    alert("You are logged out. Please log in again.");
+                    return;
+                }
+    
+                //********* If not logged out, allow default behavior******//
             });
         }
     
-        // Run the trapBackButton function on page load
-        window.onload = function() {
+        window.onload = function () {
+            const isLoggedIn = sessionStorage.getItem('loggedIn') === 'true';
+            const isLoggedOut = sessionStorage.getItem('loggedOut') === 'true';
+    
+         
+            if (isLoggedIn) {
+                location.replace("pages/home.html");
+                return;
+            }
+    
+        
+            if (isLoggedOut) {
+              
+            }
+    
+          
             trapBackButton();
         };
     </script>
+    
+    
     
     
 </body>
